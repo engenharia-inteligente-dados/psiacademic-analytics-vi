@@ -5,14 +5,17 @@ import {
   OnInit,
   Output,
   SimpleChanges,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 
 @Component({
-  selector: 'select-auto-complet',
-  templateUrl: './form-select-auto-complet.component.html',
-  styleUrls: ['./form-select-auto-complet.component.scss'],
+    selector: 'select-auto-complet',
+    templateUrl: './form-select-auto-complet.component.html',
+    styleUrls: ['./form-select-auto-complet.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class FormSelectAutoCompletComponent implements OnInit {
   private readonly _defaultSelect = `Selecione uma Opção`;

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {
   TOTAL_ANOS_POR_REP_CHART,
   TOTAL_TRABALHOS_ANOS,
@@ -19,9 +19,11 @@ import { DashboardElementsName } from './dashboardElementsNames.enum';
 import { TRANSTORNOS_REPOSITORIO_ANO } from '../../../shared/const/chart.const';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class DashboardComponent implements OnInit {
   public loading = false;

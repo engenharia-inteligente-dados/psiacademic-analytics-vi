@@ -1,11 +1,13 @@
-import { Component, Input, OnInit, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ITrabalho } from '../../../shared/interfaces/trabalhos.interface';
 import { createPopper } from '@popperjs/core';
 import { PopoverPositions } from 'src/app/shared/enums/popoverPositions.enum';
 @Component({
-  selector: 'trabalho-info',
-  templateUrl: './trabalho-info.component.html',
-  styleUrls: ['./trabalho-info.component.scss'],
+    selector: 'trabalho-info',
+    templateUrl: './trabalho-info.component.html',
+    styleUrls: ['./trabalho-info.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class TrabalhoInfoComponent implements OnInit {
   @Input() trabalho: ITrabalho;

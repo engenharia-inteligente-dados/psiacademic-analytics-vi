@@ -1,21 +1,18 @@
-<ng-container *ngIf="!loading">
+@if (!loading) {
   <div class="title-principal">DADOS DE TRABALHOS ACADÊMICOS SOBRE SAÚDE MENTAL</div>
   <div class="flex flex-wrap">
     <div class="w-full xl:w-6/12 mb-12 xl:mb-0 px-4">
       <card [title]="Charts[DashElem.TranstornosRepositorioAno].Title">
         <div actions class="flex flex-wrap">
-          <ng-container
-            *ngFor="
-              let Filter of Charts[DashElem.TranstornosRepositorioAno]?.Actions
-                ?.Filters;
-              index as i
-            "
-          >
+          @for (
+            Filter of Charts[DashElem.TranstornosRepositorioAno]?.Actions
+            ?.Filters; track
+            Filter; let i = $index) {
             <div class="w-full md:w-1/2">
               <select-auto-complet
-                [label]="Filter?.Label"
-                [options]="Filter?.Options"
-                [selectedDefault]="Filter?.Value"
+                [label]="$safeNavigationMigration(Filter?.Label)"
+                [options]="$safeNavigationMigration(Filter?.Options)"
+                [selectedDefault]="$safeNavigationMigration(Filter?.Value)"
                 (optionChange)="
                   filter(
                     $event,
@@ -24,17 +21,18 @@
                     i
                   )
                 "
-              >
+                >
               </select-auto-complet>
             </div>
-          </ng-container>
+          }
         </div>
         <ng-container body>
-          <chart
-            [chart]="Charts[DashElem.TranstornosRepositorioAno]?.Chart"
-            [id]="Charts[DashElem.TranstornosRepositorioAno]?.Id"
-            *ngIf="!Charts[DashElem.TranstornosRepositorioAno].Loading"
-          ></chart>
+          @if (!Charts[DashElem.TranstornosRepositorioAno].Loading) {
+            <chart
+              [chart]="$safeNavigationMigration(Charts[DashElem.TranstornosRepositorioAno]?.Chart)"
+              [id]="$safeNavigationMigration(Charts[DashElem.TranstornosRepositorioAno]?.Id)"
+            ></chart>
+          }
           <chart-loading
             [loading]="Charts[DashElem.TranstornosRepositorioAno].Loading"
           ></chart-loading>
@@ -44,18 +42,15 @@
     <div class="w-full xl:w-6/12 mb-12 xl:mb-0 px-4">
       <card [title]="Charts[DashElem.TrabalhosEmAnosPorRepositorio].Title">
         <div actions class="flex flex-wrap">
-          <ng-container
-            *ngFor="
-              let Filter of Charts[DashElem.TrabalhosEmAnosPorRepositorio]
-                ?.Actions?.Filters;
-              index as i
-            "
-          >
+          @for (
+            Filter of Charts[DashElem.TrabalhosEmAnosPorRepositorio]
+            ?.Actions?.Filters; track
+            Filter; let i = $index) {
             <div class="w-full md:w-1/2">
               <select-auto-complet
-                [label]="Filter?.Label"
-                [options]="Filter?.Options"
-                [selectedDefault]="Filter?.Value"
+                [label]="$safeNavigationMigration(Filter?.Label)"
+                [options]="$safeNavigationMigration(Filter?.Options)"
+                [selectedDefault]="$safeNavigationMigration(Filter?.Value)"
                 (optionChange)="
                   filter(
                     $event,
@@ -64,17 +59,18 @@
                     i
                   )
                 "
-              >
+                >
               </select-auto-complet>
             </div>
-          </ng-container>
+          }
         </div>
         <div body>
-          <chart
-            [chart]="Charts[DashElem.TrabalhosEmAnosPorRepositorio]?.Chart"
-            [id]="Charts[DashElem.TrabalhosEmAnosPorRepositorio]?.Id"
-            *ngIf="!Charts[DashElem.TrabalhosEmAnosPorRepositorio].Loading"
-          ></chart>
+          @if (!Charts[DashElem.TrabalhosEmAnosPorRepositorio].Loading) {
+            <chart
+              [chart]="$safeNavigationMigration(Charts[DashElem.TrabalhosEmAnosPorRepositorio]?.Chart)"
+              [id]="$safeNavigationMigration(Charts[DashElem.TrabalhosEmAnosPorRepositorio]?.Id)"
+            ></chart>
+          }
           <chart-loading
             [loading]="Charts[DashElem.TrabalhosEmAnosPorRepositorio].Loading"
           ></chart-loading>
@@ -87,8 +83,8 @@
       <card [title]="Charts[DashElem.TrabalhosPorRepositorios].Title">
         <chart
           body
-          [chart]="Charts[DashElem.TrabalhosPorRepositorios]?.Chart"
-          [id]="Charts[DashElem.TrabalhosPorRepositorios]?.Id"
+          [chart]="$safeNavigationMigration(Charts[DashElem.TrabalhosPorRepositorios]?.Chart)"
+          [id]="$safeNavigationMigration(Charts[DashElem.TrabalhosPorRepositorios]?.Id)"
         ></chart>
       </card>
     </div>
@@ -96,8 +92,8 @@
       <card [title]="Charts[DashElem.TotalAnos].Title">
         <chart
           body
-          [chart]="Charts[DashElem.TotalAnos]?.Chart"
-          [id]="Charts[DashElem.TotalAnos]?.Id"
+          [chart]="$safeNavigationMigration(Charts[DashElem.TotalAnos]?.Chart)"
+          [id]="$safeNavigationMigration(Charts[DashElem.TotalAnos]?.Id)"
         ></chart>
       </card>
     </div>
@@ -113,7 +109,7 @@
               openModal(Frequencias[DashElem.FrequenciasTitulosTrabalhos])
             "
             aria-label="Frequencias de titulos de trabalhos, ver todos os 10"
-          >
+            >
             Ver todas
           </button>
         </div>
@@ -122,7 +118,7 @@
           [campos]="atributosTabelas"
           [linhas]="Frequencias[DashElem.FrequenciasTitulosTrabalhos].Preview"
           [haslegendas]="false"
-        >
+          >
         </tabela>
       </card>
     </div>
@@ -134,7 +130,7 @@
             type="button"
             (click)="openModal(Frequencias[DashElem.FrequenciasTiposTrabalhos])"
             aria-label="Frequencias de Tipos de trabalho ver todos os 10"
-          >
+            >
             Ver todas
           </button>
         </div>
@@ -143,20 +139,20 @@
           [campos]="atributosTabelas"
           [linhas]="Frequencias[DashElem.FrequenciasTiposTrabalhos].Preview"
           [haslegendas]="false"
-        >
+          >
         </tabela>
       </card>
     </div>
   </div>
-</ng-container>
+}
 <dash-loading [loading]="loading"></dash-loading>
 
-<ng-container *ngIf="showModalFrequencia">
+@if (showModalFrequencia) {
   <frequencia-todos-itens
     [campos]="atributosTabelas"
     [linhas]="frequenciaSelecionada.Frequencias"
     [titulo]="frequenciaSelecionada.Title"
     (dismiss)="closeModal()"
-  >
+    >
   </frequencia-todos-itens>
-</ng-container>
+}

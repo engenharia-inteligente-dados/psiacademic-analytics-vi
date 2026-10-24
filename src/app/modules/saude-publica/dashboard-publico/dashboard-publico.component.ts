@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { IChart } from '../../../shared/interfaces/chart.interface';
 import { Colors } from 'src/app/shared/enums/Colors';
 import {
@@ -18,9 +18,11 @@ import { FormControl } from '@angular/forms';
 import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Component({
-  selector: 'app-dashboard-publico',
-  templateUrl: './dashboard-publico.component.html',
-  styleUrls: ['./dashboard-publico.component.scss'],
+    selector: 'app-dashboard-publico',
+    templateUrl: './dashboard-publico.component.html',
+    styleUrls: ['./dashboard-publico.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class DashboardPublicoComponent implements OnInit {
   public loading = false;

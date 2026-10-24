@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConsultTitle, ConsultaType, ConsultTypeSelectOPtions } from 'src/app/shared/enums/types.enums';
 import { IOptionsSelectConsulta } from 'src/app/shared/interfaces/opcoes-select-consultas.interface';
@@ -9,9 +9,11 @@ import { ITrabalho } from '../../shared/interfaces/trabalhos.interface';
 import { UserFeedbackProvider } from '../../shared/providers/users-feedback.provider';
 
 @Component({
-  selector: 'app-consults',
-  templateUrl: './consults.component.html',
-  styleUrls: ['./consults.component.scss'],
+    selector: 'app-consults',
+    templateUrl: './consults.component.html',
+    styleUrls: ['./consults.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class ConsultsComponent implements OnInit {
   private readonly genericTitle = 'Consultar Artigos Por {0}';

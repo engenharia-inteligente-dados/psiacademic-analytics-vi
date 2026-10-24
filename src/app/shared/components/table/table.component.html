@@ -1,84 +1,100 @@
 <div
   class="relative flex flex-col min-w-0 break-words w-full mb-6"
   [ngClass]="{'bg-white' :light, 'bg-slate-800 text-white':!light}"
->
+  >
   <div class="rounded-t mb-0 px-4 py-3 border-0">
     <div class="flex flex-wrap items-center">
       <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-        <h3
-          class="font-semibold text-lg"
-          [ngClass]="{'text-slate-700' :light, 'text-white': !light}"
-          *ngIf="titulo"
-        >
-          {{ titulo }}
-        </h3>
+        @if (titulo) {
+          <h3
+            class="font-semibold text-lg"
+            [ngClass]="{'text-slate-700' :light, 'text-white': !light}"
+            >
+            {{ titulo }}
+          </h3>
+        }
       </div>
     </div>
-    <div class="flex flex-wrap items-start" *ngIf="haslegendas">
-      <button class="outline-none border-0 border-transparent cursor-auto" aria-label="Legendas" #legendasBtnRef (click)="toggle()">
-        <i class="fas fa-question-circle text-blue-500"></i>
+    @if (haslegendas) {
+      <div class="flex flex-wrap items-start">
+        <button class="outline-none border-0 border-transparent cursor-auto" aria-label="Legendas" #legendasBtnRef (click)="toggle()">
+          <i class="fas fa-question-circle text-blue-500"></i>
           Legendas
-      </button>
-    </div>
+        </button>
+      </div>
+    }
   </div>
   <div class="flex w-full overflow-x-auto">
     <!-- Projects table -->
     <table class="items-center w-full bg-transparent border-collapse">
       <thead>
         <tr>
-          <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 w-1/3 whitespace-nowrap font-semibold text-left"
+          @for (campo of campos; track campo) {
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 w-1/3 whitespace-nowrap font-semibold text-left"
             [ngClass]="
               { 'bg-slate-50 text-slate-500 border-slate-100': light,
               'bg-slate-800 text-slate-300 border-slate-700': !light }"
-            *ngFor="let campo of campos"
-          >
-            {{ campo.label }}
-          </th>
+              >
+              {{ campo.label }}
+            </th>
+          }
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let linha of linhas; let i = index"
+        @for (linha of linhas; track linha; let i = $index) {
+          <tr
         [ngClass]="{'even:bg-sky-50 odd:bg-slate-50 text-slate-500 border-slate-100': light,
         'even:bg-gray-700 odd:bg-slate-800 text-slate-300 border-slate-700': !light}">
-          <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs p-4"
-            *ngFor="let campo of campos"
+            @for (campo of campos; track campo) {
+              <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs p-4"
             [ngClass]="
               {
-                'text-left flex items-center': campo?.primeiro
+                'text-left flex items-center': $safeNavigationMigration(campo?.primeiro)
               }"
-          >
-
+                >
             <div [ngClass]="
             {
-              'ml-3 font-bold': campo?.primeiro,
+              'ml-3 font-bold': $safeNavigationMigration(campo?.primeiro),
               'text-slate-600': light,
               'text-white': !light
             }"
-            [ngSwitch]="campo.key">
-            <span *ngSwitchCase="'resumo'">
-              {{ linha[campo.key] | resumePipe }}
-            </span>
-            <span *ngSwitchCase="'autores'">
-              {{ linha[campo.key] | inlineAutores}}
-            </span>
-            <span *ngSwitchCase="'actions'" class="flex justify-center">
-              <ng-container *ngFor="let acao of campo.acoes">
-                <button
-                  class="px-2 py-1 text-xl font-medium focus:outline-none focus:shadow-outline"
-                  [ngClass]=" light ? acao.classIcon: 'text-white hover:text-cyan-200'"
-                  (click)="emitAcao(acao.id,linha)"
-                >
-                  <i [ngClass]="acao.icon"></i>
-                </button>
-              </ng-container>
-            </span>
-            <span *ngSwitchDefault>
-              {{ linha[campo.key] }}
-            </span>
-            </div>
-          </td>
-        </tr>
+                  >
+                  @switch (campo.key) {
+                    @case ('resumo') {
+                      <span>
+                        {{ linha[campo.key] | resumePipe }}
+                      </span>
+                    }
+                    @case ('autores') {
+                      <span>
+                        {{ linha[campo.key] | inlineAutores}}
+                      </span>
+                    }
+                    @case ('actions') {
+                      <span class="flex justify-center">
+                        @for (acao of campo.acoes; track acao) {
+                          <button
+                            class="px-2 py-1 text-xl font-medium focus:outline-none focus:shadow-outline"
+                            [ngClass]=" light ? acao.classIcon: 'text-white hover:text-cyan-200'"
+                            (click)="emitAcao(acao.id,linha)"
+                            >
+                            <i [ngClass]="acao.icon"></i>
+                          </button>
+                        }
+                      </span>
+                    }
+                    @default {
+                      <span>
+                        {{ linha[campo.key] }}
+                      </span>
+                    }
+                  }
+                </div>
+              </td>
+            }
+          </tr>
+        }
       </tbody>
     </table>
   </div>

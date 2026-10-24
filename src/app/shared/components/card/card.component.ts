@@ -1,9 +1,11 @@
-import { Component, ContentChild, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+    selector: 'card',
+    templateUrl: './card.component.html',
+    styleUrls: ['./card.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class CardComponent implements OnInit {
   @Input() title: string;

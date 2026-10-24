@@ -30,17 +30,22 @@ Esse projeto tem como objetivo a visualização de informação do Psiacademic A
 ### **Libs**
 
 Libs padrão angular não serão adicionadas nessa listagem
-* [Angular](https://angular.io/) `16.2.5`
-* [tailwindcss](https://tailwindcss.com/) `3.0.24`
-* [Chartjs](https://www.chartjs.org/) `4.4.0`
+* [Angular](https://angular.dev/) `22.2`
+* [tailwindcss](https://tailwindcss.com/) `3.4`
+* [Chartjs](https://www.chartjs.org/) `4.6`
+* [Syncfusion Maps](https://ej2.syncfusion.com/angular/documentation/maps/getting-started) `23.2` (mantida na v23: a chave de licença em `main.ts` é desta versão)
 * [popperjs/core](https://popper.js.org/) `2.11.8`
-* [sweetAlert2](https://sweetalert2.github.io/) `11.6.13`
+* [sweetAlert2](https://sweetalert2.github.io/) `11.26`
 ## **Comandos**
 
 ### **Angular**
 Comandos do angular
 ### **Run**
- Para rodar `ng s -o` para abrir o servidor na porta `http://localhost:4200/`.
+ Requer Node.js `24.x` (definido em `engines` no `package.json`). Instale as dependências com `npm ci`.
+
+ Para desenvolvimento use `npm run dev` (ou `ng s -o`) para abrir o servidor na porta `http://localhost:4200/`.
+
+ `npm start` roda o servidor de produção (`server.js`, Express), que serve o build em `dist/` — rode `npm run build` antes.
 
 ### **Gerar artefatos angular**
  User o `ng g c nome-do-component` para gerar um um novo componente ou use 
@@ -52,6 +57,21 @@ Comandos do angular
  
  ### **Testes**
  Para testar use `ng test` para realizar testes unitarios  ou `ng e2e` para teste end-to-end
+
+## **Deploy (Heroku)**
+
+ O app roda no Heroku com o buildpack Node.js (stack `heroku-24`):
+
+ 1. O Heroku instala as dependências com `npm ci` a partir do `package-lock.json` (mantenha-o commitado).
+ 2. Roda `npm run build` (`ng build`, configuração de produção) automaticamente.
+ 3. Sobe o processo `web: node server.js` definido no `Procfile`, escutando a porta `$PORT`.
+
+ Para publicar, conecte o app ao repositório GitHub (Dashboard do Heroku → Deploy → GitHub) ou use a CLI:
+
+ ```bash
+ heroku create <nome-do-app>
+ git push heroku main
+ ```
 
 
 ## Project References

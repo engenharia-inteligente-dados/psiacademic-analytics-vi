@@ -1,13 +1,15 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IOptionsSelectConsulta } from 'src/app/shared/interfaces/opcoes-select-consultas.interface';
 import { ConsultaType, ConsultTypeSelectOPtions, FormAtrributeConsult, FormType } from '../../../shared/enums/types.enums';
 import { FORM_TEMPLATE } from './consult-form-const';
 
 @Component({
-  selector: 'consults-form',
-  templateUrl: './consults-form.component.html',
-  styleUrls: ['./consults-form.component.scss']
+    selector: 'consults-form',
+    templateUrl: './consults-form.component.html',
+    styleUrls: ['./consults-form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class ConsultsFormComponent implements OnInit {
   @Input() templateTipo?: ConsultaType = ConsultaType.Anos;

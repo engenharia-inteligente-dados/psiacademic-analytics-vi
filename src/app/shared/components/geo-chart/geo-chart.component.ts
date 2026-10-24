@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import brazilGeo from './brazil_geo.json';
 
 @Component({
-  selector: 'geo-chart',
-  templateUrl: './geo-chart.component.html',
-  styleUrls: ['./geo-chart.component.scss'],
+    selector: 'geo-chart',
+    templateUrl: './geo-chart.component.html',
+    styleUrls: ['./geo-chart.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class GeoChartComponent {
   

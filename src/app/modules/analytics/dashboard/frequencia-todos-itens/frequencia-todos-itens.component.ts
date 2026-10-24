@@ -1,9 +1,11 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'frequencia-todos-itens',
-  templateUrl: './frequencia-todos-itens.component.html',
-  styleUrls: ['./frequencia-todos-itens.component.scss']
+    selector: 'frequencia-todos-itens',
+    templateUrl: './frequencia-todos-itens.component.html',
+    styleUrls: ['./frequencia-todos-itens.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class FrequenciaTodosItensComponent implements OnInit {
   @Input() campos: any;

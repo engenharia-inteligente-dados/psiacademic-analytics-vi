@@ -1,9 +1,13 @@
 {
   "name": "psi-academic-analytics-vi",
   "version": "2.0.10",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
+    "dev": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -12,31 +16,32 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^16.2.5",
-    "@angular/common": "^16.2.5",
-    "@angular/compiler": "^16.2.5",
-    "@angular/core": "^16.2.5",
-    "@angular/forms": "^16.2.5",
-    "@angular/platform-browser": "^16.2.5",
-    "@angular/platform-browser-dynamic": "^16.2.5",
-    "@angular/router": "^16.2.5",
+    "@angular/animations": "^22.2.3",
+    "@angular/common": "^22.2.3",
+    "@angular/compiler": "^22.2.3",
+    "@angular/core": "^22.2.3",
+    "@angular/forms": "^22.2.3",
+    "@angular/platform-browser": "^22.2.3",
+    "@angular/platform-browser-dynamic": "^22.2.3",
+    "@angular/router": "^22.2.3",
     "@popperjs/core": "2.11.8",
     "@syncfusion/ej2-angular-maps": "^23.2.4",
     "@syncfusion/ej2-material-theme": "~23.2.4",
     "@tailwindcss/forms": "^0.5.6",
     "chart.js": "^4.4.0",
+    "express": "^5.3.0",
     "rxjs": "~7.8.1",
     "sweetalert2": "^11.6.13",
-    "zone.js": "~0.13.3"
+    "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^16.2.2",
-    "@angular/cli": "~16.2.2",
-    "@angular/compiler-cli": "^16.2.5",
-    "@types/chart.js": "^2.9.41",
+    "@angular-devkit/build-angular": "^22.2.4",
+    "@angular/cli": "~22.2.4",
+    "@angular/compiler-cli": "^22.2.3",
     "@types/jasmine": "~4.3.6",
-    "@types/node": "^20.6.1",
+    "@types/node": "^24.19.2",
     "autoprefixer": "^10.4.15",
+    "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "~5.1.1",
     "karma": "~6.4.2",
     "karma-chrome-launcher": "~3.2.0",
@@ -46,6 +51,6 @@
     "postcss": "^8.4.29",
     "tailwindcss": "^3.3.3",
     "tslib": "^2.6.2",
-    "typescript": "~5.1.0"
+    "typescript": "~6.0.3"
   }
 }

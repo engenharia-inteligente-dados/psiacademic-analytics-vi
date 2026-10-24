@@ -1,11 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { IPagination } from '../../interfaces/pagination.interface';
 
 @Component({
-  selector: 'paginacao',
-  templateUrl: './paginacao.component.html',
-  styleUrls: ['./paginacao.component.scss'],
+    selector: 'paginacao',
+    templateUrl: './paginacao.component.html',
+    styleUrls: ['./paginacao.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class PaginacaoComponent implements OnInit {
   @Input() paginacao: IPagination;

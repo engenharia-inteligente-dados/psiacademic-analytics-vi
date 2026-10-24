@@ -6,15 +6,18 @@ import {
   OnInit,
   Output,
   ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { createPopper } from '@popperjs/core';
 import { PopoverPositions } from '../../enums/popoverPositions.enum';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
-  selector: 'tabela',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
+    selector: 'tabela',
+    templateUrl: './table.component.html',
+    styleUrls: ['./table.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class TableComponent implements OnInit {
   @Input() titulo: string;

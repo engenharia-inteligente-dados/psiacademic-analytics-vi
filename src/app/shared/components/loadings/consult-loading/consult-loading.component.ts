@@ -1,9 +1,11 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'consult-loading',
-  templateUrl: './consult-loading.component.html',
-  styleUrls: ['./consult-loading.component.scss']
+    selector: 'consult-loading',
+    templateUrl: './consult-loading.component.html',
+    styleUrls: ['./consult-loading.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class ConsultLoadingComponent implements OnInit, OnChanges {
   @Input() loading:boolean = false

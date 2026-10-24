@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TRANSTORNOS_LABELS } from '../../const/transtornoHumanizade.const';
 
 @Pipe({
-  name: 'transtornoPipe'
+    name: 'transtornoPipe',
+    standalone: false
 })
 export class TranstornoPipePipe implements PipeTransform {
 

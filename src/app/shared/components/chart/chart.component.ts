@@ -4,13 +4,16 @@ import {
   OnDestroy,
   OnInit,
   SimpleChanges,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import Chart from 'chart.js/auto';
 
 @Component({
-  selector: 'chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss'],
+    selector: 'chart',
+    templateUrl: './chart.component.html',
+    styleUrls: ['./chart.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class ChartComponent implements OnInit, OnDestroy {
   @Input() chart: any;

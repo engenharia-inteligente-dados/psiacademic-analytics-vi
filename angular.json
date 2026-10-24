@@ -82,10 +82,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Psi-Academic-Analytics-VI:build:production"
+              "buildTarget": "Psi-Academic-Analytics-VI:build:production"
             },
             "development": {
-              "browserTarget": "Psi-Academic-Analytics-VI:build:development"
+              "buildTarget": "Psi-Academic-Analytics-VI:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -93,7 +93,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Psi-Academic-Analytics-VI:build"
+            "buildTarget": "Psi-Academic-Analytics-VI:build"
           }
         },
         "test": {
@@ -120,5 +120,31 @@
   },
   "cli": {
     "analytics": "8c81e10d-e5a3-4d9a-a543-c341341338d2"
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
   }
 }

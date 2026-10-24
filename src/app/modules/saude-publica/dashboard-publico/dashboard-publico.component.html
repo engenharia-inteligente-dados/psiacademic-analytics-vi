@@ -1,5 +1,5 @@
-<ng-container *ngIf="!loading">
-    <div class="title-principal">DADOS PÚBLICOS DE SAÚDE MENTAL</div>
+@if (!loading) {
+  <div class="title-principal">DADOS PÚBLICOS DE SAÚDE MENTAL</div>
   <div class="dashboard-card">
     <div class="w-full mb-12 xl:mb-0 px-4">
       <card [title]="'No Brasil'">
@@ -47,89 +47,91 @@
       </card>
     </div>
   </div>
-
   <div class="dashboard">
     <div class="w-full mb-12 xl:mb-0 px-4">
-      <card [title]="Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento]?.Title" class="tamanho">
+      <card [title]="$safeNavigationMigration(Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento]?.Title)" class="tamanho">
         <div actions class="flex flex-wrap w-full">
           <!-- Filtros fixos 'Conteúdo' e 'Estado' sempre visíveis -->
-          <ng-container
-            *ngFor="let filterItem of Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento]?.Actions?.Filters; let i = index">
+          @for (filterItem of Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento]?.Actions?.Filters; track filterItem; let i = $index) {
             <!-- Filtros dinâmicos, visibilidade controlada por *ngIf -->
-            <div *ngIf="filterItem.Label === 'Conteúdo' || filterItem.Label === 'Estado' || filterItem.Visible"
-              class="w-full md:w-1/2">
-              <select-auto-complet [label]="filterItem?.Label" [options]="filterItem?.Options"
-                [selectedDefault]="filterItem?.Value"
-                (optionChange)="qtdCasosPorMorbidadeAtendimentoEvent($event, Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento])">
-              </select-auto-complet>
-            </div>
-          </ng-container>
+            @if (filterItem.Label === 'Conteúdo' || filterItem.Label === 'Estado' || filterItem.Visible) {
+              <div
+                class="w-full md:w-1/2">
+                <select-auto-complet [label]="$safeNavigationMigration(filterItem?.Label)" [options]="$safeNavigationMigration(filterItem?.Options)"
+                  [selectedDefault]="$safeNavigationMigration(filterItem?.Value)"
+                  (optionChange)="qtdCasosPorMorbidadeAtendimentoEvent($event, Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento])">
+                </select-auto-complet>
+              </div>
+            }
+          }
         </div>
         <ng-container body>
-          <chart [chart]="Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento]?.Chart"
-            [id]="Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento]?.Id"
-            *ngIf="!Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento]?.Loading">
-          </chart>
-          <chart-loading [loading]="Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento]?.Loading">
+          @if (!Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento]?.Loading) {
+            <chart [chart]="$safeNavigationMigration(Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento]?.Chart)"
+              [id]="$safeNavigationMigration(Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento]?.Id)"
+              >
+            </chart>
+          }
+          <chart-loading [loading]="$safeNavigationMigration(Charts[DashPubElem.qtdCasosPorMorbidadeAtendimento]?.Loading)">
           </chart-loading>
         </ng-container>
       </card>
     </div>
     <div class="dashboard-card">
       <div class="w-full mb-12 xl:mb-0 px-4">
-        <card [title]="Charts[DashPubElem.dadosPorConteudo]?.Title" class="tamanho">
+        <card [title]="$safeNavigationMigration(Charts[DashPubElem.dadosPorConteudo]?.Title)" class="tamanho">
           <div actions class="flex flex-wrap">
-            <ng-container *ngFor="let filterItem of Charts[DashPubElem.dadosPorConteudo]?.Actions?.Filters; index as i">
+            @for (filterItem of Charts[DashPubElem.dadosPorConteudo]?.Actions?.Filters; track filterItem; let i = $index) {
               <div class="w-full md:w-1/2">
-                <select-auto-complet [label]="filterItem?.Label" [options]="filterItem?.Options"
-                  [selectedDefault]="filterItem?.Value"
+                <select-auto-complet [label]="$safeNavigationMigration(filterItem?.Label)" [options]="$safeNavigationMigration(filterItem?.Options)"
+                  [selectedDefault]="$safeNavigationMigration(filterItem?.Value)"
                   (optionChange)="dadosPorConteudoEvent($event,Charts[DashPubElem.dadosPorConteudo])">
                 </select-auto-complet>
               </div>
-            </ng-container>
-
+            }
           </div>
           <ng-container body>
-            <chart classe="h-4/5" [chart]="Charts[DashPubElem.dadosPorConteudo]?.Chart"
-              [id]="Charts[DashPubElem.dadosPorConteudo]?.Id" *ngIf="!Charts[DashPubElem.dadosPorConteudo]?.Loading">
-            </chart>
-            <chart-loading [loading]="Charts[DashPubElem.dadosPorConteudo]?.Loading">
+            @if (!Charts[DashPubElem.dadosPorConteudo]?.Loading) {
+              <chart classe="h-4/5" [chart]="$safeNavigationMigration(Charts[DashPubElem.dadosPorConteudo]?.Chart)"
+                [id]="$safeNavigationMigration(Charts[DashPubElem.dadosPorConteudo]?.Id)">
+              </chart>
+            }
+            <chart-loading [loading]="$safeNavigationMigration(Charts[DashPubElem.dadosPorConteudo]?.Loading)">
             </chart-loading>
           </ng-container>
         </card>
       </div>
     </div>
   </div>
-
   <div class="w-full mb-12 xl:mb-0 px-4">
-    <card [title]="Charts[DashPubElem.qtdCasosPorEstado]?.Title">
+    <card [title]="$safeNavigationMigration(Charts[DashPubElem.qtdCasosPorEstado]?.Title)">
       <div actions class="flex flex-wrap">
-        <ng-container *ngFor="let filterItem of Charts[DashPubElem.qtdCasosPorEstado]?.Actions?.Filters; index as i">
+        @for (filterItem of Charts[DashPubElem.qtdCasosPorEstado]?.Actions?.Filters; track filterItem; let i = $index) {
           <div class="w-full md:w-1/2">
-            <select-auto-complet [label]="filterItem?.Label" [options]="filterItem?.Options"
-              [selectedDefault]="filterItem?.Value"
+            <select-auto-complet [label]="$safeNavigationMigration(filterItem?.Label)" [options]="$safeNavigationMigration(filterItem?.Options)"
+              [selectedDefault]="$safeNavigationMigration(filterItem?.Value)"
               (optionChange)="qtdCasosPorEstadoEvent($event,Charts[DashPubElem.qtdCasosPorEstado])">
             </select-auto-complet>
           </div>
-        </ng-container>
+        }
       </div>
       <ng-container body>
-        <chart [chart]="Charts[DashPubElem.qtdCasosPorEstado]?.Chart" [id]="Charts[DashPubElem.qtdCasosPorEstado]?.Id"
-          *ngIf="!Charts[DashPubElem.qtdCasosPorEstado]?.Loading">
-        </chart>
-        <chart-loading [loading]="Charts[DashPubElem.qtdCasosPorEstado]?.Loading">
+        @if (!Charts[DashPubElem.qtdCasosPorEstado]?.Loading) {
+          <chart [chart]="$safeNavigationMigration(Charts[DashPubElem.qtdCasosPorEstado]?.Chart)" [id]="$safeNavigationMigration(Charts[DashPubElem.qtdCasosPorEstado]?.Id)"
+            >
+          </chart>
+        }
+        <chart-loading [loading]="$safeNavigationMigration(Charts[DashPubElem.qtdCasosPorEstado]?.Loading)">
         </chart-loading>
       </ng-container>
     </card>
   </div>
-
   <div class="w-full mb-12 xl:mb-0 px-4">
     <card [title]="'Mapa de casos'">
       <div class="card-body-content" body>
         <div class="square-map">
           <geo-chart>
           </geo-chart>
-
           <div class="ranking-container">
             <h2 class="ranking-title">Ranking</h2>
             <p class="ranking-subtitle">TOP 5 estados com maiores <br>nº de internações</p>
@@ -161,12 +163,10 @@
               </li>
             </ul>
           </div>
-
         </div>
       </div>
     </card>
   </div>
-
   <div class="w-full mb-0 xl:mb-0 px-4">
     <card [title]="'Origem dos dados'">
       <div class="card-body-content" body>
@@ -182,11 +182,9 @@
         Os dados do DATASUS foram coletados de 2013 a julho de 2023, enquanto os dados do SISAB abrangeram o período de
         abril de 2013 a agosto de 2023, considerando a disponibilidade máxima das plataformas durante a execução do
         trabalho.
-
       </div>
     </card>
   </div>
-
   <div class="w-full mb-0 xl:mb-0 px-4">
     <card [title]="'Notas'">
       <div class="card-body-content" body>
@@ -198,9 +196,5 @@
       </div>
     </card>
   </div>
-
-
   <footer class="footer">Desenvolvido em 2023.</footer>
-
-
-</ng-container>
+}

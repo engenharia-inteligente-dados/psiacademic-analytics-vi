@@ -1,7 +1,7 @@
-<ng-container *ngIf="id">
+@if (id) {
   <div [ngClass]="classe">
     <canvas attr.id="chart-{{id}}"></canvas>
   </div>
-</ng-container>
+}
 
 <!--  style="height: 350px" -->

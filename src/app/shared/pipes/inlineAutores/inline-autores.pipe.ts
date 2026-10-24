@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'inlineAutores'
+    name: 'inlineAutores',
+    standalone: false
 })
 export class InlineAutoresPipe implements PipeTransform {
 
