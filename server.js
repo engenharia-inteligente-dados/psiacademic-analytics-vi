@@ -1,4 +1,5 @@
 // Servidor de produção (Heroku): entrega o build do Angular e faz fallback das rotas do SPA para o index.html
+const compression = require('compression');
 const express = require('express');
 const path = require('path');
 
@@ -7,6 +8,9 @@ const DIST = path.join(__dirname, 'dist', 'psi-academic-analytics-vi');
 const PORT = process.env.PORT || 4200;
 // Arquivos gerados pelo Angular com hash no nome (ex.: main-MOZIYU5V.js, chunk-DB94J3cv.js) podem ficar em cache indefinidamente
 const HASHED_FILE = /-[A-Za-z0-9]{8}\.(js|css)$/;
+
+// Compressão (brotli ou gzip) nas respostas: o chunk da tela de saúde pública cai de ~1,6 MB para ~470 KB
+app.use(compression());
 
 app.use(
   express.static(DIST, {
