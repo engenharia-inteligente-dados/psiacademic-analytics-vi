@@ -52,7 +52,7 @@ export class ConsultsComponent implements OnInit {
         },
         {
           label: 'Abrir Referencia do trabalho',
-          icon: 'fas fa-external-link',
+          icon: 'fas fa-external-link-alt',
           classIcon: 'hover:text-sky-700 text-sky-400',
           id: 2,
         },

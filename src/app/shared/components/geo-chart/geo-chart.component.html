@@ -1,2 +1,14 @@
-<ejs-maps [layers]="layerOptions"
-        [legendSettings]="legendOptions"></ejs-maps>
+<div class="geo-chart">
+  <div #mapa class="mapa"></div>
+  <div class="legenda">
+    <p class="legenda-titulo">{{ titulo }}</p>
+    <ul>
+      @for (faixa of faixas; track faixa.rotulo) {
+        <li class="legenda-item">
+          <span class="legenda-marcador" [style.background]="faixa.cor"></span>
+          {{ faixa.rotulo }}
+        </li>
+      }
+    </ul>
+  </div>
+</div>

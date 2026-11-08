@@ -45,7 +45,7 @@ export const MAIN_ROUTES = [
         Label: 'Por Expressão',
         Route: [`consultas/${ConsultaType.Expressoes}/`],
         InUse: true,
-        Icon: `fas fa-comment-minus`,
+        Icon: `fas fa-comment-dots`,
         Hash:'#menuConsultasExpressao',
 
       },

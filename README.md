@@ -33,7 +33,8 @@ Libs padrão angular não serão adicionadas nessa listagem
 * [Angular](https://angular.dev/) `22.2`
 * [tailwindcss](https://tailwindcss.com/) `3.4`
 * [Chartjs](https://www.chartjs.org/) `4.6`
-* [Syncfusion Maps](https://ej2.syncfusion.com/angular/documentation/maps/getting-started) `23.2` (mantida na v23: a chave de licença em `main.ts` é desta versão)
+* [Apache ECharts](https://echarts.apache.org/) `6.1` (mapa de casos por estado)
+* [Font Awesome Free](https://fontawesome.com/v5/search?m=free) `5.15` (ícones, servidos localmente)
 * [popperjs/core](https://popper.js.org/) `2.11.8`
 * [sweetAlert2](https://sweetalert2.github.io/) `11.26`
 ## **Comandos**

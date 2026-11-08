@@ -1,7 +1,10 @@
+@use 'sass:meta';
+
 @tailwind base;
 
 @tailwind components;
 
 @tailwind utilities;
 
-@import './elements/global.scss'
+// Depois das camadas do Tailwind, como era com @import
+@include meta.load-css('elements/global');

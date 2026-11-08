@@ -1,19 +1,19 @@
 const plugin = require("tailwindcss/plugin");
 const colors = require("tailwindcss/colors");
 
+// Nomes antigos que o Tailwind 3 só mantém como apelidos (e avisa a cada build)
+const CORES_DEPRECIADAS = ["lightBlue", "warmGray", "trueGray", "coolGray", "blueGray"];
+const cores = Object.fromEntries(
+  Object.keys(colors)
+    .filter((nome) => !CORES_DEPRECIADAS.includes(nome))
+    .map((nome) => [nome, colors[nome]])
+);
+
 module.exports = {
-  content: {
-    enabled: true,
-    content: [
-      "./src/**/*.{html,ts}",
-    ],
-    options: {
-      safelist: [],
-    },
-  },
+  content: ["./src/**/*.{html,ts}"],
   theme: {
     colors: {
-      ...colors,
+      ...cores,
     },
     extend: {
       minHeight: {

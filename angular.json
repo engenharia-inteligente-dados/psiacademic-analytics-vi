@@ -18,12 +18,16 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/psi-academic-analytics-vi",
+            "outputPath": {
+              "base": "dist/psi-academic-analytics-vi",
+              "browser": ""
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -31,8 +35,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/styles.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -42,8 +46,10 @@
             },
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "chart.js"
-            ]
+              "chart.js",
+              "sweetalert2"
+            ],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -68,9 +74,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -79,7 +83,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
               "buildTarget": "Psi-Academic-Analytics-VI:build:production"
@@ -91,16 +95,18 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "Psi-Academic-Analytics-VI:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
@@ -109,8 +115,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/styles.scss"
             ],
             "scripts": []
           }

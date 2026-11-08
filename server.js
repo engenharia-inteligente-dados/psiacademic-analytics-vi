@@ -5,8 +5,8 @@ const path = require('path');
 const app = express();
 const DIST = path.join(__dirname, 'dist', 'psi-academic-analytics-vi');
 const PORT = process.env.PORT || 4200;
-// Arquivos gerados pelo Angular com hash no nome (ex.: main.971d4fd62beb44be.js) podem ficar em cache indefinidamente
-const HASHED_FILE = /\.[0-9a-f]{16,}\.(js|css)$/;
+// Arquivos gerados pelo Angular com hash no nome (ex.: main-MOZIYU5V.js, chunk-DB94J3cv.js) podem ficar em cache indefinidamente
+const HASHED_FILE = /-[A-Za-z0-9]{8}\.(js|css)$/;
 
 app.use(
   express.static(DIST, {

@@ -268,7 +268,8 @@ export class DashboardPublicoComponent implements OnInit {
       const { labels, datasetpie } = formatChartDataPie(resp, chart.Keys, chart.DatasetConfig);
       chart.Chart.data.labels = labels;
       datasetpie.label = "Casos"
-      chart.Chart.data.datasets.push(datasetpie);
+      // DADOS_CONTEUDO é compartilhado: com push, cada nova montagem da tela somava um anel à pizza
+      chart.Chart.data.datasets = [datasetpie];
       this.Charts[this.DashPubElem.dadosPorConteudo] = { ...chart };
       //console.log("FINAL", this.Charts[this.DashPubElem.dadosPorConteudo])
     } catch (error: any) {
